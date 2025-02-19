@@ -1,0 +1,77 @@
+<div class='dashboard'>
+    <div class="dashboard-nav">
+        <header class="head"><a href="main" class="menu-toggle"><i class="fa fa-bars"></i></a><a href="main" class="brand-logo"><i
+                    class="fa fa-bed"></i> <span>MMB Complex</span></a></header>
+        <nav class="dashboard-nav-list">
+
+            <a href="dash" class="dashboard-nav-item "><i class="fa fa-tachometer"></i> dashboard
+            </a>
+            <a href="main" class="dashboard-nav-item"><i class="fa fa-address-book-o"></i>
+                 Booking </a>
+            <a href="inv" class="dashboard-nav-item"><i class="fa fa-download"></i> invoice receipt </a>
+            <div class='dashboard-nav-dropdown'><a class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                        class="fa fa-bed"></i> Room </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                  <a href="download" class="dashboard-nav-dropdown-item">Update-Booking</a>
+                </div>
+            </div>
+            <div class='dashboard-nav-dropdown'><a class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                        class="fa fa-users"></i> Aadhar Details </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="userd" class="dashboard-nav-dropdown-item">All</a>
+                </div>
+            </div>
+            <div class='dashboard-nav-dropdown'>
+                <a class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                    <i class="fa fa-money"></i> Payments </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="pay" class="dashboard-nav-dropdown-item">Form</a><a href="paid"
+                        class="dashboard-nav-dropdown-item">Paid</a><a href="notpaid" class="dashboard-nav-dropdown-item">
+                        Not-Paid</a>
+                </div>
+            </div>
+            <a href="main" class="dashboard-nav-item"><i class="fa fa-cogs"></i> Settings </a><a href="profile"
+                class="dashboard-nav-item"><i class="fa fa-user"></i> Profile </a>
+            <div class="nav-item-divider"></div>
+            <a href="" class="dashboard-nav-item"><i class="fa fa-sign-out"></i> Logout </a>
+        </nav>
+    </div>
+    <div class="dashboard-app">
+        <header class="dashboard-toolbar">
+          <a class="menu-toggle"><i class="fa fa-bars"></i></a>
+        </header>
+        <div class="dashboard-content">
+          <div class="container mt-1">
+            <div class="card mb-4 shadow-lg rounded">
+              <div class="card-header">
+
+                <h1>Dashboard</h1>
+                </div>
+              <div class="row">
+                <!-- First column (Dashboard chart) -->
+                <div class="col-lg-6 col-md-12 mb-4">
+                  <div class="container one">
+                    <h5>Hostel Bookings and Payments</h5>
+
+                   
+                    <canvas id="dashboardChart"></canvas> <!-- Chart will be rendered here -->
+                  </div>
+                </div>
+        
+                <!-- Second column (Rent and Advance Data chart) -->
+                <div class="col-lg-6 col-md-12 mb-4">
+                  <div class="container one">
+                    <h5>Rent and Advance Data</h5>
+
+                    <canvas id="rentAndAdvanceChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+      
+</div>

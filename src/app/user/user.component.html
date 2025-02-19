@@ -1,0 +1,139 @@
+<div class='dashboard'>
+    <div class="dashboard-nav">
+        <header class="head"><a href="main" class="menu-toggle"><i class="fa fa-bars"></i></a><a href="main" class="brand-logo"><i
+                    class="fa fa-bed"></i> <span>MMB Complex</span></a></header>
+        <nav class="dashboard-nav-list">
+
+            <a href="dash" class="dashboard-nav-item "><i class="fa fa-tachometer"></i> dashboard
+            </a>
+            <a href="main" class="dashboard-nav-item"><i class="fa fa-address-book-o"></i>
+                 Booking </a>
+            <a href="inv" class="dashboard-nav-item"><i class="fa fa-download"></i> invoice receipt </a>
+            <div class='dashboard-nav-dropdown'><a class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                        class="fa fa-bed"></i> Room </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                  <a href="download" class="dashboard-nav-dropdown-item">Update-Booking</a>
+                </div>
+            </div>
+            <div class='dashboard-nav-dropdown'><a class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                        class="fa fa-users"></i> Aadhar Details </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="userd" class="dashboard-nav-dropdown-item">All</a>
+                </div>
+            </div>
+            <div class='dashboard-nav-dropdown'>
+                <a class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                    <i class="fa fa-money"></i> Payments </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="pay" class="dashboard-nav-dropdown-item">Form</a><a href="paid"
+                        class="dashboard-nav-dropdown-item">Paid</a><a href="notpaid" class="dashboard-nav-dropdown-item">
+                        Not-Paid</a>
+                </div>
+            </div>
+            <a href="main" class="dashboard-nav-item"><i class="fa fa-cogs"></i> Settings </a><a href="profile"
+                class="dashboard-nav-item"><i class="fa fa-user"></i> Profile </a>
+            <div class="nav-item-divider"></div>
+            <a href="" class="dashboard-nav-item"><i class="fa fa-sign-out"></i> Logout </a>
+        </nav>
+    </div>
+    <div class="dashboard-app">
+        <header class="dashboard-toolbar">
+          <a class="menu-toggle"><i class="fa fa-bars"></i></a>
+        </header>
+        <div class="dashboard-content">
+          <div class="container">
+            <div class="card mb-4">
+              <div class="card-header">
+                <h1>User Details</h1>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mb-3 pt-3" style="padding-left: 10px;">
+                <div class="d-flex">
+                  <input
+                    type="text"
+                    class="form-control me-2"
+                    placeholder="Search by Name"
+                    [(ngModel)]="searchName"
+                  />
+                  <input
+                    type="month"
+                    class="form-control me-2"
+                    [(ngModel)]="searchMonth"
+                  />
+                  <button
+                    class="btn btn-primary"
+                    (click)="search()"
+                  >
+                    Search
+                  </button>
+                </div>
+              </div>
+              
+              <div class="card-body">
+                <div *ngIf="paginatedBookings.length > 0; else noData">
+                  <div class="row">
+                    <div class="col-md-4" *ngFor="let booking of paginatedBookings">
+                      <div class="card mb-3">
+                        <div class="card-body">
+                          <h5 class="card-title">{{ booking.fullName | uppercase }}</h5>
+                          <p class="card-text">
+                            <strong>Phone:</strong> {{ booking.phone }}<br>
+                            <strong>Check-In:</strong> {{ booking.checkInDate | date }}<br>
+                            <strong>Check-Out:</strong>
+                            {{ booking.checkOutDate ? (booking.checkOutDate | date) : 'N/A' }}<br>
+                          </p>
+                          <strong>ID Proofs:</strong><br>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <p class="card-text">
+                                <span *ngIf="booking.frontIdProof">
+                                  Front ID:
+                                  <button 
+                                    class="btn btn-outline-warning btn-sm"
+                                    (click)="downloadImage(booking.frontIdProof, 'FrontID.png')">
+                                    Download
+                                  </button>
+                                </span>
+                              </p>
+                            </div>
+                            <div class="col-md-6">
+                              <p class="card-text">
+                                <span *ngIf="booking.backIdProof">
+                                  Back ID:
+                                  <button 
+                                    class="btn btn-outline-warning btn-sm"
+                                    (click)="downloadImage(booking.backIdProof, 'BackID.png')">
+                                    Download
+                                  </button>
+                                </span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <ng-template #noData>
+                  <p class="text-center">No bookings available.</p>
+                </ng-template>
+              </div>
+              
+              <!-- Pagination Controls -->
+              <!-- Pagination Controls -->
+<div class="d-flex justify-content-center mt-4">
+  <button class="btn btn-secondary me-2" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+  <button class="btn btn-secondary me-2" *ngFor="let page of [].constructor(totalPages); let i = index"
+          (click)="setPage(i + 1)" [class.active]="i + 1 === currentPage">
+    {{ i + 1 }}
+  </button>
+  <button class="btn btn-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+</div>
+
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+</div>

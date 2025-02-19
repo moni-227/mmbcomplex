@@ -1,0 +1,102 @@
+<div class='dashboard'>
+    <div class="dashboard-nav">
+        <header class="head"><a href="main" class="menu-toggle"><i class="fa fa-bars"></i></a><a href="main" class="brand-logo"><i
+                    class="fa fa-bed"></i> <span>MMB Complex</span></a></header>
+        <nav class="dashboard-nav-list">
+
+            <a href="dash" class="dashboard-nav-item "><i class="fa fa-tachometer"></i> dashboard
+            </a>
+            <a href="main" class="dashboard-nav-item"><i class="fa fa-address-book-o"></i>
+                 Booking </a>
+            <a href="inv" class="dashboard-nav-item"><i class="fa fa-download"></i> invoice receipt </a>
+            <div class='dashboard-nav-dropdown'><a class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                        class="fa fa-bed"></i> Room </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                  <a href="download" class="dashboard-nav-dropdown-item">Update-Booking</a>
+                </div>
+            </div>
+            <div class='dashboard-nav-dropdown'><a class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                        class="fa fa-users"></i> Aadhar Details </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="userd" class="dashboard-nav-dropdown-item">All</a>
+                </div>
+            </div>
+            <div class='dashboard-nav-dropdown'>
+                <a class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                    <i class="fa fa-money"></i> Payments </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="pay" class="dashboard-nav-dropdown-item">Form</a><a href="paid"
+                        class="dashboard-nav-dropdown-item">Paid</a><a href="notpaid" class="dashboard-nav-dropdown-item">
+                        Not-Paid</a>
+                </div>
+            </div>
+            <a href="main" class="dashboard-nav-item"><i class="fa fa-cogs"></i> Settings </a><a href="profile"
+                class="dashboard-nav-item"><i class="fa fa-user"></i> Profile </a>
+            <div class="nav-item-divider"></div>
+            <a href="" class="dashboard-nav-item"><i class="fa fa-sign-out"></i> Logout </a>
+        </nav>
+    </div>
+    <div class="dashboard-app">
+        <header class="dashboard-toolbar">
+          <a class="menu-toggle"><i class="fa fa-bars"></i></a>
+        </header>
+        <div class="dashboard-content">
+          <div class="container mt-1">
+            <div class="card mb-4 shadow-lg">
+              <div class="card-header">
+                <h1>Paid Rent list</h1>
+              </div>
+              <div class="card-body">
+                <!-- Search Inputs -->
+                <div class="row mb-3">
+                  <div class="col-md-5">
+                    <label for="monthSearch">Search by Month</label>
+                    <input type="month" id="monthSearch" class="form-control" [(ngModel)]="searchMonth">
+                  </div>
+                  <div class="col-md-5">
+                    <label for="dateSearch">Search by Date</label>
+                    <input type="date" id="dateSearch" class="form-control" [(ngModel)]="searchDate">
+                  </div>
+                  <div class="col-md-2 d-flex align-items-end">
+                    <button class="btn btn-primary w-100" (click)="filterPayments()">Search</button>
+                  </div>
+                </div>
+                
+                
+                <div class="table-responsive">
+                  <table class="table table-bordered table-striped table-hover">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>Full Name</th>
+                        <th>rentAmount</th>
+                        <th>advanceAmount</th>
+                        <th>Payment Amount</th>
+                        <th>Payment Date</th>
+                        <th>Payment Method</th>
+                        <th>Remarks</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let payment of filteredPayments">
+                        <td>{{ payment.HostelBookingId?.fullName | uppercase }}</td>
+                        <td>{{ payment.HostelBookingId?.rentAmount }}</td>
+                        <td>{{ payment.HostelBookingId?.advanceAmount }}</td>
+                        <td>{{ payment.paymentAmount | currency: 'INR':'symbol':'1.0-0' : 'en-IN' }}</td>
+                        <td>{{ payment.paymentDate | date }}</td>
+                        <td>{{ payment.paymentMethod | uppercase }}</td>
+                        <td>{{ payment.remarks }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+          
+              
+        </div>
+      </div>
+      
+</div>

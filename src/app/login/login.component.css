@@ -1,0 +1,232 @@
+/* ---------------------------
+   Existing CSS (Your original styles)
+------------------------------ */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right, #b92b27, #1565c0);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card {
+    margin-bottom: 20px;
+    border: none;
+}
+
+.box {
+    width: 500px;
+    padding: 40px;
+    position: relative;
+    background: #191919;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    animation: slideIn 1s ease-out;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.box h1 {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.box input[type="text"],
+.box input[type="password"] {
+    border: 2px solid #3498db;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    padding: 10px 10px;
+    width: 250px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    font-size: 16px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.box input[type="text"]:focus,
+.box input[type="password"]:focus {
+    width: 300px;
+    border-color: #2ecc71;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+}
+
+.box input[type="submit"] {
+    border: 2px solid #2ecc71;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.box input[type="submit"]:hover {
+    background: #2ecc71;
+    transform: scale(1.1);
+    box-shadow: 0 8px 15px rgba(46, 204, 113, 0.3);
+}
+
+.forgot {
+    text-decoration: underline;
+    color: #3498db;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.forgot:hover {
+    color: #2ecc71;
+}
+
+ul.social-network {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+ul.social-network li {
+    margin: 0 10px;
+}
+
+.social-network a.icoFacebook,
+.social-network a.icoTwitter,
+.social-network a.icoGoogle {
+    display: inline-block;
+    border-radius: 50%;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    color: white;
+    transition: 0.3s;
+    line-height: 50px;
+    background-color: #3B5998;
+}
+
+.social-network a.icoFacebook:hover {
+    background-color: #5d6022;
+}
+
+.social-network a.icoTwitter:hover {
+    background-color: #33ccff;
+}
+
+.social-network a.icoGoogle:hover {
+    background-color: #BD3518;
+}
+
+.social-network a:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-circle li a:hover i {
+    color: #fff;
+    transform: rotate(360deg);
+    transition: all 0.2s;
+}
+
+.social-circle i {
+    color: #fff;
+    transition: all 0.8s;
+}
+
+
+/* ---------------------------
+   Responsive CSS
+------------------------------ */
+
+/* For tablets and small desktops */
+@media only screen and (max-width: 768px) {
+    .box {
+        width: 90%; /* Make the form container take most of the available width */
+        padding: 20px;
+    }
+    .box input[type="text"],
+    .box input[type="password"] {
+        width: 80%;
+    }
+    .box input[type="text"]:focus,
+    .box input[type="password"]:focus {
+        width: 85%;
+    }
+    ul.social-network li a {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        line-height: 40px;
+    }
+}
+
+/* For mobile phones */
+@media only screen and (max-width: 480px) {
+    .box {
+        width: 95%;
+        padding: 15px;
+    }
+    .box h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    .box input[type="text"],
+    .box input[type="password"] {
+        width: 100%;
+        font-size: 14px;
+    }
+    .box input[type="text"]:focus,
+    .box input[type="password"]:focus {
+        width: 100%;
+    }
+    .box input[type="submit"] {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    ul.social-network li a {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+        line-height: 35px;
+    }
+}

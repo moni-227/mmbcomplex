@@ -1,0 +1,172 @@
+<div class='dashboard'>
+    <div class="dashboard-nav">
+        <header class="head"><a href="main" class="menu-toggle"><i class="fa fa-bars"></i></a><a href="main" class="brand-logo"><i
+                    class="fa fa-bed"></i> <span>MMB Complex</span></a></header>
+        <nav class="dashboard-nav-list">
+
+            <a href="dash" class="dashboard-nav-item "><i class="fa fa-tachometer"></i> dashboard
+            </a>
+            <a href="main" class="dashboard-nav-item"><i class="fa fa-address-book-o"></i>
+                 Booking </a>
+            <a href="inv" class="dashboard-nav-item"><i class="fa fa-download"></i> invoice receipt </a>
+            <div class='dashboard-nav-dropdown'><a class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                        class="fa fa-bed"></i> Room </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                  <a href="download" class="dashboard-nav-dropdown-item">Update-Booking</a>
+                </div>
+            </div>
+            <div class='dashboard-nav-dropdown'><a class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                        class="fa fa-users"></i> Aadhar Details </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="userd" class="dashboard-nav-dropdown-item">All</a>
+                </div>
+            </div>
+            <div class='dashboard-nav-dropdown'>
+                <a class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                    <i class="fa fa-money"></i> Payments </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="pay" class="dashboard-nav-dropdown-item">Form</a><a href="paid"
+                        class="dashboard-nav-dropdown-item">Paid</a><a href="notpaid" class="dashboard-nav-dropdown-item">
+                        Not-Paid</a>
+                </div>
+            </div>
+            <a href="main" class="dashboard-nav-item"><i class="fa fa-cogs"></i> Settings </a><a href="profile"
+                class="dashboard-nav-item"><i class="fa fa-user"></i> Profile </a>
+            <div class="nav-item-divider"></div>
+            <a href="" class="dashboard-nav-item"><i class="fa fa-sign-out"></i> Logout </a>
+        </nav>
+    </div>
+    <div class='dashboard-app'>
+        <header class='dashboard-toolbar'><a class="menu-toggle"><i class="fa fa-bars"></i></a></header>
+        <div class='dashboard-content'>
+            <div class='container'>
+                <div class='card mb-4'>
+                    <div class='card-header'>
+                        <h1>Booking Room</h1>
+                    </div>
+                    <form [formGroup]="hostelBookingForm" (ngSubmit)="onSubmit()" class="container">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="fullName">Full Name</label>
+                              <input type="text" id="fullName" formControlName="fullName" class="form-control" placeholder="Enter your full name" required />
+                              <div *ngIf="isInvalid('fullName')" class="text-danger">
+                                {{ getError('fullName') }}
+                              </div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label for="email">Email</label>
+                              <input type="email" id="email" formControlName="email" class="form-control" placeholder="Enter your email" required />
+                              <div *ngIf="isInvalid('email')" class="text-danger">
+                                {{ getError('email') }}
+                              </div>
+                            </div>
+                      
+                            <div class="form-group">
+                              <label for="phone">Phone Number</label>
+                              <input type="tel" id="phone" formControlName="phone" class="form-control" placeholder="Enter your phone number" required />
+                              <div *ngIf="isInvalid('phone')" class="text-danger">
+                                {{ getError('phone') }}
+                              </div>
+                            </div>
+                      
+                            <div class="form-group">
+                              <label for="checkInDate">Check-in Date</label>
+                              <input type="date" id="checkInDate" formControlName="checkInDate" class="form-control" required />
+                              <div *ngIf="isInvalid('checkInDate')" class="text-danger">
+                                {{ getError('checkInDate') }}
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="checkOutDate">Check-Out Date</label>
+                              <input type="date" id="checkOutDate" formControlName="checkOutDate" class="form-control"  />
+                              <div *ngIf="isInvalid('checkOutDate')" class="text-danger">
+                                {{ getError('checkOutDate') }}
+                              </div>
+                            </div>
+                      
+                            <div class="form-group">
+                              <label for="gender">Gender</label>
+                              <select id="gender" formControlName="gender" class="form-control" >
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                              </select>
+                            </div>
+                          </div>
+                      
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="frontIdProof">ID Proof</label>
+                              <input type="file" id="frontIdProof" [(ngModel)]="frontIdProof" [ngModelOptions]="{standalone: true}"  class="form-control" accept="image/*" (change)="onFileChange($event, 'frontIdProof')" />
+                              <div *ngIf="isInvalid('frontIdProof')" class="text-danger">
+                                {{ getError('frontIdProof') }}
+                              </div>
+                            </div>
+                            <img *ngIf="bookingToEdit?.frontIdProof" [src]="'data:image/jpeg;base64,' + bookingToEdit.frontIdProof" alt="Front ID Proof" />
+
+                          
+                            <div class="form-group">
+                              <label for="backIdProof">ID Proof</label>
+                              <input type="file" id="backIdProof" [(ngModel)]="backIdProof" [ngModelOptions]="{standalone: true}"  class="form-control" accept="image/*" (change)="onFileChange($event, 'backIdProof')" />
+                              <div *ngIf="isInvalid('backIdProof')" class="text-danger">
+                                {{ getError('backIdProof') }}
+                              </div>
+
+                            </div>
+                            <img *ngIf="bookingToEdit?.backIdProof" [src]="'data:image/jpeg;base64,' + bookingToEdit.backIdProof" alt="Back ID Proof" />
+
+                          
+                          
+                          
+                      
+                            <div class="form-group">
+                              <label for="paymentMethod">Payment Method</label>
+                              <select id="paymentMethod" formControlName="paymentMethod" class="form-control" >
+                                <option value="">Select Payment Method</option>
+                                <option value="creditCard">Credit Card</option>
+                                <option value="debitCard">Debit Card</option>
+                                <option value="cash">Cash</option>
+                                <option value="upi">UPI</option>
+                              </select>
+                              
+                            </div>
+                      
+                            <div class="form-group">
+                              <label for="advanceAmount">Room Advance Amount</label>
+                              <input type="number" id="advanceAmount" formControlName="advanceAmount" class="form-control" min="1" required placeholder="Enter room advance amount" />
+                              <div *ngIf="isInvalid('advanceAmount')" class="text-danger">
+                                {{ getError('advanceAmount') }}
+                              </div>
+                            </div>
+                      
+                            <div class="form-group">
+                              <label for="rentAmount">Room Rent Amount</label>
+                              <input type="number" id="rentAmount" formControlName="rentAmount" class="form-control" min="1" required placeholder="Enter room rent amount" />
+                              <div *ngIf="isInvalid('rentAmount')" class="text-danger">
+                                {{ getError('rentAmount') }}
+                              </div>
+                            </div>
+                      
+                            <div class="form-group">
+                              <label for="specialRequests">Special Requests</label>
+                              <textarea id="specialRequests" formControlName="specialRequests" class="form-control" placeholder="Any special requests"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      
+                        <div class="row">
+                          <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-primary mt-3">Book Room</button>
+                          </div>
+                        </div>
+                      </form>
+                      
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

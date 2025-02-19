@@ -1,0 +1,79 @@
+<div class='dashboard'>
+    <div class="dashboard-nav">
+        <header class="head"><a href="main" class="menu-toggle"><i class="fa fa-bars"></i></a><a href="main" class="brand-logo"><i
+                    class="fa fa-bed"></i> <span>MMB Complex</span></a></header>
+        <nav class="dashboard-nav-list">
+
+            <a href="dash" class="dashboard-nav-item "><i class="fa fa-tachometer"></i> dashboard
+            </a>
+            <a href="main" class="dashboard-nav-item"><i class="fa fa-address-book-o"></i>
+                 Booking </a>
+            <a href="inv" class="dashboard-nav-item"><i class="fa fa-download"></i> invoice receipt </a>
+            <div class='dashboard-nav-dropdown'><a class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                        class="fa fa-bed"></i> Room </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                  <a href="download" class="dashboard-nav-dropdown-item">Update-Booking</a>
+                </div>
+            </div>
+            <div class='dashboard-nav-dropdown'><a class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                        class="fa fa-users"></i> Aadhar Details </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="userd" class="dashboard-nav-dropdown-item">All</a>
+                </div>
+            </div>
+            <div class='dashboard-nav-dropdown'>
+                <a class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                    <i class="fa fa-money"></i> Payments </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="pay" class="dashboard-nav-dropdown-item">Form</a><a href="paid"
+                        class="dashboard-nav-dropdown-item">Paid</a><a href="notpaid" class="dashboard-nav-dropdown-item">
+                        Not-Paid</a>
+                </div>
+            </div>
+            <a href="main" class="dashboard-nav-item"><i class="fa fa-cogs"></i> Settings </a><a href="profile"
+                class="dashboard-nav-item"><i class="fa fa-user"></i> Profile </a>
+            <div class="nav-item-divider"></div>
+            <a href="" class="dashboard-nav-item"><i class="fa fa-sign-out"></i> Logout </a>
+        </nav>
+    </div>
+    <div class='dashboard-app'>
+        <header class='dashboard-toolbar'><a class="menu-toggle"><i class="fa fa-bars"></i></a></header>
+        <div class='dashboard-content'>
+            <div class="container">
+                <div class="card mb-4">
+                  <div class="card-header">
+                    <h1>Profile</h1>
+                  </div>
+                  <div class="card-body">
+                    <div *ngIf="loading" class="text-center">
+                      <p>Loading...</p>
+                    </div>
+                    <div *ngIf="error" class="alert alert-danger">
+                      {{ error }}
+                    </div>
+                    <table *ngIf="!loading && !error"  class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Username</th>
+                          <th>Email</th>
+                          <th>createdAt</th>
+                          <th>Age</th>
+                          <th>Role</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let user of users">
+                          <td>{{ user.fullName }}</td>
+                          <td>{{ user.username }}</td>
+                          <td>{{ user.createdAt  | date: 'short' }}</td>
+                          <td>{{ user.age }}</td>
+                          <td>{{ user.role }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>

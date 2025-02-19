@@ -1,0 +1,152 @@
+<div class='dashboard'>
+    <div class="dashboard-nav">
+        <header class="head"><a href="main" class="menu-toggle"><i class="fa fa-bars"></i></a><a href="main" class="brand-logo"><i
+                    class="fa fa-bed"></i> <span>MMB Complex</span></a></header>
+        <nav class="dashboard-nav-list">
+
+            <a href="dash" class="dashboard-nav-item "><i class="fa fa-tachometer"></i> dashboard
+            </a>
+            <a href="main" class="dashboard-nav-item"><i class="fa fa-address-book-o"></i>
+                 Booking </a>
+            <a href="inv" class="dashboard-nav-item"><i class="fa fa-download"></i> invoice receipt </a>
+            <div class='dashboard-nav-dropdown'><a class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                        class="fa fa-bed"></i> Room </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                  <a href="download" class="dashboard-nav-dropdown-item">Update-Booking</a>
+                </div>
+            </div>
+            <div class='dashboard-nav-dropdown'><a class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                        class="fa fa-users"></i> Aadhar Details </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="userd" class="dashboard-nav-dropdown-item">All</a>
+                </div>
+            </div>
+            <div class='dashboard-nav-dropdown'>
+                <a class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                    <i class="fa fa-money"></i> Payments </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="pay" class="dashboard-nav-dropdown-item">Form</a><a href="paid"
+                        class="dashboard-nav-dropdown-item">Paid</a><a href="notpaid" class="dashboard-nav-dropdown-item">
+                        Not-Paid</a>
+                </div>
+            </div>
+            <a href="main" class="dashboard-nav-item"><i class="fa fa-cogs"></i> Settings </a><a href="profile"
+                class="dashboard-nav-item"><i class="fa fa-user"></i> Profile </a>
+            <div class="nav-item-divider"></div>
+            <a href="" class="dashboard-nav-item"><i class="fa fa-sign-out"></i> Logout </a>
+        </nav>
+    </div>
+    <div class="dashboard-app">
+        <header class="dashboard-toolbar">
+          <a class="menu-toggle"><i class="fa fa-bars"></i></a>
+        </header>
+        <div class="dashboard-content">
+            <div class="container">
+                <div class="card mb-4">
+                  <div class="card-header">
+                    <h1>Payment Form</h1>
+                  </div>
+                  <div class="card-body">
+                    <form (ngSubmit)="onSubmit()" #paymentForm="ngForm">
+                      <!-- Full Name Dropdown -->
+                      <div class="form-group">
+                        <label for="fullname">Full Name</label>
+                        <select
+                          id="fullname"
+                          class="form-control"
+                          [(ngModel)]="fullname"
+                          name="fullname"
+                          #fullnameField="ngModel"
+                          required
+                        >
+                          <option *ngFor="let booking of filteredBookings" [value]="booking.fullName">
+                            {{ booking.fullName }}
+                          </option>
+                        </select>
+                        <div *ngIf="fullnameField.invalid && fullnameField.touched" class="text-danger">
+                          Full name is required.
+                        </div>
+                      </div>
+                    
+                      <!-- Payment Amount -->
+                      <div class="form-group">
+                        <label for="paymentAmount">Payment Amount</label>
+                        <input
+                          type="number"
+                          id="paymentAmount"
+                          class="form-control"
+                          [(ngModel)]="paymentAmount"
+                          name="paymentAmount"
+                          #paymentAmountField="ngModel"
+                          required
+                          [min]="0"
+                        />
+                        <div *ngIf="paymentAmountField.invalid && paymentAmountField.touched" class="text-danger">
+                          Payment amount is required and must be a positive number.
+                        </div>
+                      </div>
+                    
+                      <!-- Payment Date -->
+                      <div class="form-group">
+                        <label for="paymentDate">Payment Date</label>
+                        <input
+                          type="date"
+                          id="paymentDate"
+                          class="form-control"
+                          [(ngModel)]="paymentDate"
+                          name="paymentDate"
+                          #paymentDateField="ngModel"
+                          required
+                        />
+                        <div *ngIf="paymentDateField.invalid && paymentDateField.touched" class="text-danger">
+                          Payment date is required.
+                        </div>
+                      </div>
+                    
+                      <!-- Payment Method -->
+                      <div class="form-group">
+                        <label for="paymentMethod">Payment Method</label>
+                        <select
+                          id="paymentMethod"
+                          class="form-control"
+                          [(ngModel)]="paymentMethod"
+                          name="paymentMethod"
+                          #paymentMethodField="ngModel"
+                          required
+                        >
+                          <option value="">Select Payment Method</option>
+                          <option value="creditCard">Credit Card</option>
+                          <option value="debitCard">Debit Card</option>
+                          <option value="cash">Cash</option>
+                          <option value="upi">UPI</option>
+                        </select>
+                        <div *ngIf="paymentMethodField.invalid && paymentMethodField.touched" class="text-danger">
+                          Payment method is required.
+                        </div>
+                      </div>
+                    
+                      <!-- Remarks -->
+                      <div class="form-group">
+                        <label for="remarks">Remarks</label>
+                        <textarea
+                          id="remarks"
+                          class="form-control"
+                          [(ngModel)]="remarks"
+                          name="remarks"
+                        ></textarea>
+                      </div>
+                    
+                      <!-- Submit Button -->
+                      <div class="pt-3">
+                        <button type="submit" class="btn btn-primary" [disabled]="paymentForm.invalid">Submit Payment</button>
+                      </div>
+                    </form>
+                    
+                  </div>
+                </div>
+              </div>
+              
+        </div>
+      </div>
+      
+</div>

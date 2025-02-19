@@ -1,0 +1,37 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<!-- Font Awesome CSS -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form (ngSubmit)="onSubmit()" class="box">
+                    <h1>Login</h1>
+                    <p class="text-muted">Please enter your login and password!</p>
+                    <input type="text" [(ngModel)]="username" name="username" placeholder="Username" required>
+                    <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required>
+                    <a class="forgot text-muted" href="#">Forgot password?</a>
+                    <input type="submit" value="Login">
+                    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+                    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+                    <div class="col-md-12">
+                        <ul class="social-network social-circle">
+                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#" class="icoTwitter" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fab fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+</body>

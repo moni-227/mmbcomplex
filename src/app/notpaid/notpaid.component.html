@@ -1,0 +1,116 @@
+<div class='dashboard'>
+    <div class="dashboard-nav">
+        <header class="head"><a href="main" class="menu-toggle"><i class="fa fa-bars"></i></a><a href="main" class="brand-logo"><i
+                    class="fa fa-bed"></i> <span>MMB Complex</span></a></header>
+        <nav class="dashboard-nav-list">
+
+            <a href="dash" class="dashboard-nav-item "><i class="fa fa-tachometer"></i> dashboard
+            </a>
+            <a href="main" class="dashboard-nav-item"><i class="fa fa-address-book-o"></i>
+                 Booking </a>
+            <a href="inv" class="dashboard-nav-item"><i class="fa fa-download"></i> invoice receipt </a>
+            <div class='dashboard-nav-dropdown'><a class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                        class="fa fa-bed"></i> Room </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                  <a href="download" class="dashboard-nav-dropdown-item">Update-Booking</a>
+                </div>
+            </div>
+            <div class='dashboard-nav-dropdown'><a class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                        class="fa fa-users"></i> Aadhar Details </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="userd" class="dashboard-nav-dropdown-item">All</a>
+                </div>
+            </div>
+            <div class='dashboard-nav-dropdown'>
+                <a class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                    <i class="fa fa-money"></i> Payments </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="pay" class="dashboard-nav-dropdown-item">Form</a><a href="paid"
+                        class="dashboard-nav-dropdown-item">Paid</a><a href="notpaid" class="dashboard-nav-dropdown-item">
+                        Not-Paid</a>
+                </div>
+            </div>
+            <a href="main" class="dashboard-nav-item"><i class="fa fa-cogs"></i> Settings </a><a href="profile"
+                class="dashboard-nav-item"><i class="fa fa-user"></i> Profile </a>
+            <div class="nav-item-divider"></div>
+            <a href="" class="dashboard-nav-item"><i class="fa fa-sign-out"></i> Logout </a>
+        </nav>
+    </div>
+    <div class="dashboard-app">
+        <header class="dashboard-toolbar">
+          <a class="menu-toggle"><i class="fa fa-bars"></i></a>
+        </header>
+        <div class="dashboard-content">
+          <div class="container">
+            <div class="card mb-4">
+              <div class="card-header">
+                <h1>Not-Paid Rent List</h1>
+              </div>
+          
+              <!-- Search Input -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 col-md-3">
+                    <div class="form-group">
+                      <input 
+                        type="text" 
+                        class="form-control custom-input" 
+                        placeholder="Search by full name" 
+                        [(ngModel)]="searchQuery"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-3">
+                    <button class="btn btn-primary custom-btn" (click)="searchBookings()">Search</button>
+                  </div>
+                </div>
+              </div>
+              
+          
+              <!-- Loading & Error Message -->
+              <div class="card-body" *ngIf="isLoading">
+                <p>Loading missing bookings...</p>
+              </div>
+              <div class="card-body" *ngIf="errorMessage">
+                <div class="alert alert-danger">{{ errorMessage }}</div>
+              </div>
+          
+              <!-- Table of Missing Bookings -->
+              <div *ngIf="filteredBookings.length > 0" class="card-body">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Full Name</th>
+                      <th>Email</th>
+                      <th>Phone</th>
+                      <th>Advance Amount</th>
+                      <th>Rent Amount</th>
+                      <th>Missing Months</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let booking of filteredBookings">
+                      <td>{{ booking.booking.fullName | uppercase }}</td>
+                      <td>{{ booking.booking.email }}</td>
+                      <td>{{ booking.booking.phone }}</td>
+                      <td>{{ booking.booking.advanceAmount }}</td>
+                      <td>{{ booking.booking.rentAmount }}</td>
+                      <td>{{ booking.missingMonths.join(', ') }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                
+              </div>
+          
+              <!-- No Data Found -->
+              <div *ngIf="filteredBookings.length === 0 && !isLoading" class="card-body">
+                <p>No missing bookings found.</p>
+              </div>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+      
+</div>

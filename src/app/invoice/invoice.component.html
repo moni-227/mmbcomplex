@@ -1,0 +1,119 @@
+<div class='dashboard'>
+    <div class="dashboard-nav">
+        <header class="head"><a href="main" class="menu-toggle"><i class="fa fa-bars"></i></a><a href="main" class="brand-logo"><i
+                    class="fa fa-bed"></i> <span>MMB Complex</span></a></header>
+        <nav class="dashboard-nav-list">
+
+            <a href="dash" class="dashboard-nav-item "><i class="fa fa-tachometer"></i> dashboard
+            </a>
+            <a href="main" class="dashboard-nav-item"><i class="fa fa-address-book-o"></i>
+                 Booking </a>
+            <a href="inv" class="dashboard-nav-item"><i class="fa fa-download"></i> invoice receipt </a>
+            <div class='dashboard-nav-dropdown'><a class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                        class="fa fa-bed"></i> Room </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                  <a href="download" class="dashboard-nav-dropdown-item">Update-Booking</a>
+                </div>
+            </div>
+            <div class='dashboard-nav-dropdown'><a class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                        class="fa fa-users"></i> Aadhar Details </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="userd" class="dashboard-nav-dropdown-item">All</a>
+                </div>
+            </div>
+            <div class='dashboard-nav-dropdown'>
+                <a class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                    <i class="fa fa-money"></i> Payments </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="pay" class="dashboard-nav-dropdown-item">Form</a><a href="paid"
+                        class="dashboard-nav-dropdown-item">Paid</a><a href="notpaid" class="dashboard-nav-dropdown-item">
+                        Not-Paid</a>
+                </div>
+            </div>
+            <a href="main" class="dashboard-nav-item"><i class="fa fa-cogs"></i> Settings </a><a href="profile"
+                class="dashboard-nav-item"><i class="fa fa-user"></i> Profile </a>
+            <div class="nav-item-divider"></div>
+            <a href="" class="dashboard-nav-item"><i class="fa fa-sign-out"></i> Logout </a>
+        </nav>
+    </div>
+    <div class="dashboard-app">
+        <header class="dashboard-toolbar">
+          <a class="menu-toggle"><i class="fa fa-bars"></i></a>
+        </header>
+        <div class="dashboard-content">
+          <div class="container ">
+            <div class="card  shadow-lg">
+              <div class="card-header">
+                <h1>invoice Receipt</h1>
+              </div>
+              <div class="container mt-4">
+                <!-- Search Input -->
+                <div class="mb-3 d-flex">
+                  <input
+                    type="text"
+                    class="form-control me-2"
+                    placeholder="Search by Full Name"
+                    [(ngModel)]="searchText"
+                  />
+                  <button class="btn btn-primary" (click)="filterByName()">Search</button>
+                </div>
+              
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Paid Person</th>
+                        <th>Show Receipt</th>
+                        <th>Close Receipt</th>
+                        <th>Download</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let payment of filteredPayments">
+                        <td>{{ payment.fullName | uppercase }}</td>
+                        <td>
+                          <button class="btn btn-success" (click)="viewReceipt(payment)">
+                            Show Receipt
+                          </button>
+                        </td>
+                        <td>
+                          <button class="btn btn-danger" (click)="viewReceipt(selectedPayment)">Close Receipt</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-primary" (click)="downloadReceipt(payment)">
+                            Download Receipt
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              
+                <!-- Invoice Receipt Card (Shown when a payment is selected) -->
+                <div class="card mb-4 shadow-lg" *ngIf="selectedPayment">
+                  <h2>MMB Complex Hostel Bill</h2>
+                  <div class="card-body">
+                    <h4>Invoice Receipt</h4>
+                    <br />
+                    <p>Dear {{ selectedPayment.fullName | uppercase }},</p>
+                    <p>
+                      This is the official receipt for your payment. Please find the details of your transaction below. Should you
+                      have any queries regarding your bill, feel free to contact the hostel administration.
+                    </p>
+                    <p>
+                      <strong>Amount Paid:</strong>
+                      {{ selectedPayment.paymentAmount | currency: 'INR':'symbol':'1.0-0' : 'en-IN' }}
+                    </p>
+                    <p><strong>Payment Date:</strong> {{ selectedPayment.paymentDate | date }}</p>
+                    <p><strong>Payment Method:</strong> {{ selectedPayment.paymentMethod }}</p>
+                  </div>
+                </div>
+              </div>
+              
+          
+          
+              
+        </div>
+      </div>
+      
+</div>
